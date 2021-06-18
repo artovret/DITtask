@@ -1,13 +1,13 @@
 package com.example.task4;
 
-import com.example.task4.domain.Message;
+import com.example.task4.entity.Message;
+import com.example.task4.entity.UserEntity;
 import com.example.task4.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -32,7 +32,8 @@ public class GreetingController {
     @GetMapping
     public String main(Map<String, Object> model) {
         Iterable<Message> messages = messageRepo.findAll();
-
+        UserEntity user = new UserEntity();
+        user.setFirstName("hvgjh");
         model.put("messages", messages);
 
         return "main";

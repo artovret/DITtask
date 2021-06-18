@@ -1,6 +1,6 @@
 package com.example.task4.repository;
 
-import com.example.task4.domain.Message;
+import com.example.task4.entity.Message;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

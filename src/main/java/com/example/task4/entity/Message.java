@@ -1,4 +1,4 @@
-package com.example.task4.domain;
+package com.example.task4.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
