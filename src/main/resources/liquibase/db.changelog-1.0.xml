@@ -11,15 +11,6 @@
             <column name="username" type="VARCHAR(100)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="email" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="first_name" type="VARCHAR(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_name" type="VARCHAR(100)">
-                <constraints nullable="false"/>
-            </column>
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
@@ -95,9 +86,10 @@
     <changeSet id="1.0.6" author="artem.titov">
         <insert tableName="users">
             <column name="username" value="artov"/>
-            <column name="email" value="artjdls@gmail.com"/>
-            <column name="first_name" value="Artem"/>
-            <column name="last_name" value="Titov"/>
+            <column name="password" value="$2a$04$04Tx/HlQjfXENdPZZcKON.RuDHDdxSGeROC.E8cQWQNwd9leb94au"/>
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="titix"/>
             <column name="password" value="$2a$04$04Tx/HlQjfXENdPZZcKON.RuDHDdxSGeROC.E8cQWQNwd9leb94au"/>
         </insert>
         <insert tableName="user_roles">
@@ -107,6 +99,10 @@
         <insert tableName="user_roles">
             <column name="user_id" value='1'/>
             <column name="role_id" value='2'/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" value='2'/>
+            <column name="role_id" value='1'/>
         </insert>
     </changeSet>
 
