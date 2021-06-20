@@ -5,10 +5,16 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.util.Date;
-
-@MappedSuperclass // суперкласс для которого не нужно отдельной таблицы
+// суперкласс для которого не нужно отдельной таблицы
+@MappedSuperclass
 @Data
 public class BaseEntity {
 
@@ -27,5 +33,4 @@ public class BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
-
 }
