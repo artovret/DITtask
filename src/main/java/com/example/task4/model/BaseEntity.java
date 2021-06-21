@@ -22,10 +22,12 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @CreatedDate
     @Column(name = "created")
     private Date created;
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @LastModifiedDate
     @Column(name = "updated")
     private Date updated;

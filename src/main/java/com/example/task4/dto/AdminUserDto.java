@@ -11,12 +11,14 @@ public class AdminUserDto {
     private Long id;
     private String username;
     private String status;
+    private String password;
 
     public User toUser() {
         User user = new User();
         user.setId(id);
         user.setUsername(username);
         user.setStatus(Status.valueOf(status));
+        user.setPassword(password);
         return user;
     }
 
@@ -25,6 +27,7 @@ public class AdminUserDto {
         adminUserDto.setId(user.getId());
         adminUserDto.setUsername(user.getUsername());
         adminUserDto.setStatus(user.getStatus().name());
+        adminUserDto.setPassword(user.getPassword());
         return adminUserDto;
     }
 }

@@ -14,5 +14,9 @@ public interface UserService {
 
     User findById(Long id);
 
+    User changeStatus(String username, String status);
+
+    User passwordUpdate(User user);
+
     void delete(Long id);
 }

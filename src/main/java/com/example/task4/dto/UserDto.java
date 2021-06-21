@@ -23,7 +23,6 @@ public class UserDto {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
-
         return userDto;
     }
 }
