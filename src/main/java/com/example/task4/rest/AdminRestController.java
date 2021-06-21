@@ -52,7 +52,9 @@ public class AdminRestController {
     @PostMapping("users/status")
     public ResponseEntity statusUpdate(@RequestBody StatusRequestDto statusRequestDto) {
         try {
-            userService.changeStatus(statusRequestDto.getUsername(), statusRequestDto.getStatus());
+            User user = userService.findByUsername(statusRequestDto.getUsername());
+
+            userService.changeStatus(user, statusRequestDto.getStatus());
             Map<Object, Object> response = new HashMap<>();
             response.put("username", statusRequestDto.getUsername());
             response.put("NEW STATUS", statusRequestDto.getStatus());

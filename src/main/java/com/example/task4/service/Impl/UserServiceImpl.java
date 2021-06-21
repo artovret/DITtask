@@ -92,14 +92,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User changeStatus(String username, String status) {
-        User user = userRepository.findByUsername(username);
-        Long userId = user.getId();
+    public User changeStatus(User user, String status) {
+        //Long userId = user.getId();
         log.info("Хотим поставить статус: {} ", status);
         user.setStatus(Status.valueOf(status));
-        userRepository.deleteById(userId);
         userRepository.save(user);
-        log.info("Поменяли статус пользователя: {} ", username);
+        log.info("Поменяли статус пользователя: {} ", user);
         return user;
     }
 
