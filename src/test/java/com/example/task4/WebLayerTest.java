@@ -41,7 +41,7 @@ public class WebLayerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("username","artov").exists());
     }
-
+//
     @Test
     public void shouldNotAllowAccessToUnauthenticatedUsers() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/test")).andExpect(status().isForbidden());
