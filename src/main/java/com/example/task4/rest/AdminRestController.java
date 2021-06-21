@@ -2,9 +2,9 @@ package com.example.task4.rest;
 
 
 import com.example.task4.dto.AdminUserDto;
-import com.example.task4.dto.AuthenticationRequestDto;
-import com.example.task4.dto.StatusRequestDto;
+import com.example.task4.dto.RoleRequestDto;
 import com.example.task4.dto.UserPasswordDto;
+import com.example.task4.dto.StatusRequestDto;
 import com.example.task4.model.User;
 import com.example.task4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,16 +48,6 @@ public class AdminRestController {
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
-    @GetMapping("users/delete/{name}") //удалить
-    public ResponseEntity<UserPasswordDto> deleteByName(@PathVariable(name = "name") String name) {
-        User user = userService.findByUsername(name);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        UserPasswordDto userDto = UserPasswordDto.fromUser(user);
-        return new ResponseEntity<>(userDto, HttpStatus.OK);
-    }
-
 
     @PostMapping("users/status")
     public ResponseEntity statusUpdate(@RequestBody StatusRequestDto statusRequestDto) {
@@ -73,7 +63,7 @@ public class AdminRestController {
     }
 
     @PostMapping("update/password")
-    public ResponseEntity deleteUserByName(@RequestBody AuthenticationRequestDto authenticationRequestDto) {
+    public ResponseEntity passwordUpdate(@RequestBody UserPasswordDto authenticationRequestDto) {
         try {
             User user = userService.findByUsername(authenticationRequestDto.getUsername());
             user.setPassword(authenticationRequestDto.getPassword());
@@ -85,5 +75,20 @@ public class AdminRestController {
             throw new BadCredentialsException("Ошибка при регистрации пользователя");
         }
     }
+
+    @PostMapping("update/role")
+    public ResponseEntity roleUpdate(@RequestBody RoleRequestDto requestDto) {
+        try {
+            User user = userService.findByUsername(requestDto.getUsername());
+            userService.roleUpdate(user, requestDto.getRoles());
+            Map<Object, Object> response = new HashMap<>();
+            response.put("username", requestDto.getUsername());
+            response.put("Role", requestDto.getRoles());
+            return ResponseEntity.ok(response);
+        } catch (AuthenticationException e) {
+            throw new BadCredentialsException("Ошибка при регистрации пользователя");
+        }
+    }
+
 
 }

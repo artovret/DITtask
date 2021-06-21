@@ -1,11 +1,10 @@
 package com.example.task4.rest;
 
 
-import com.example.task4.dto.AuthenticationRequestDto;
+import com.example.task4.dto.UserPasswordDto;
 import com.example.task4.model.User;
 import com.example.task4.security.jwt.JwtTokenProvider;
 import com.example.task4.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,7 +35,7 @@ public class AuthenticationRestController {
     }
 
     @PostMapping("login")
-    public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto) {
+    public ResponseEntity login(@RequestBody UserPasswordDto requestDto) {
         try {
             String username = requestDto.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));

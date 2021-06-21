@@ -18,5 +18,7 @@ public interface UserService {
 
     User passwordUpdate(User user);
 
+    User roleUpdate(User user, List<String> roles);
+
     void delete(Long id);
 }

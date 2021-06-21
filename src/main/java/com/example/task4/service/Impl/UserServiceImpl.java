@@ -35,11 +35,9 @@ public class UserServiceImpl implements UserService {
         Role roleUser = roleRepository.findByName("ROLE_USER");
         List<Role> userRoles = new ArrayList<>();
         userRoles.add(roleUser);
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(userRoles);
         user.setStatus(Status.ACTIVE);
-
         User registeredUser = userRepository.save(user);
 
         log.info("IN register - user: {} successfully registered", registeredUser);
@@ -47,21 +45,24 @@ public class UserServiceImpl implements UserService {
         return registeredUser;
     }
 
-
+    @Override
     public User passwordUpdate(User user) {
-//        Role roleUser = roleRepository.findByName("ROLE_USER");
-//        List<Role> userRoles = new ArrayList<>();
-//        userRoles.add(roleUser);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        user.setRoles(userRoles);
-//        user.setStatus(Status.ACTIVE);
-
-        User registeredUser = userRepository.save(user);
-
-        log.info("IN register - user: {} successfully registered", registeredUser);
-
-        return registeredUser;
+        return userRepository.save(user);
     }
+
+    @Override
+    public User roleUpdate(User user, List<String> roles) {
+        List<Role> roleList = new ArrayList<>();
+        for (String role : roles) {
+            Role roleUser = roleRepository.findByName(role);
+            roleList.add(roleUser);
+        }
+        user.setRoles(roleList);
+        userRepository.save(user);
+        return user;
+    }
+
 
     @Override
     public List<User> getAll() {
